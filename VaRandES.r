@@ -1,3 +1,4 @@
+# Import libraries and set seed
 library(quantmod);library(ggplot2);library(moments);library(MASS);library(metRology)
 set.seed(123)
 
@@ -70,3 +71,14 @@ ES.t <- round(mean(sample.t[sample.t < VaR.t]), 6)
 
 # Print results
 cat("Value at Risk:", VaR.t, "Expected Shortfall:", ES.t, sep = "\n")
+
+#### Applying the Results ####
+
+portfolio <- 1000
+
+# Using VaR and ES from empirical distribution
+VaR.portfolio <- portfolio * (exp(VaR.empirical) - 1) # VaR: -16.31
+ES.portfolio <- portfolio * (exp(VaR.empirical) - 1) # ES: -26.24
+
+# Print results
+cat("Value at Risk:", VaR.portfolio, "Expected Shortfall:", ES.portfolio, sep = "\n")
